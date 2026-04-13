@@ -77,7 +77,7 @@ const compressImage = (file, location) => {
       user_lat: loc.lat,
       user_lng: loc.lng,
       photo: base64,
-      user: "user1"
+      user: JSON.parse(localStorage.getItem("user")).name
     });
 
     alert(res.success ? "Pickup success" : res.message);
@@ -94,7 +94,7 @@ const compressImage = (file, location) => {
       user_lat: loc.lat,
       user_lng: loc.lng,
       photo: base64,
-      user: "user1"
+      user: JSON.parse(localStorage.getItem("user")).name
     });
 
     alert(res.success ? "Dropoff success" : res.message);

@@ -8,14 +8,23 @@ export default function Dashboard() {
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
-    loadTickets();
+  const user = localStorage.getItem("user");
+
+    if (!user) {
+      window.location.href = "/login";
+    } else {
+      loadTickets();
+    }
   }, []);
 
   const loadTickets = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const res = await apiRequest({
       action: "getTickets",
       page: 1,
-      limit: 20
+      limit: 20,
+      user: user.name
     });
 
     setTickets(res.data || []);
